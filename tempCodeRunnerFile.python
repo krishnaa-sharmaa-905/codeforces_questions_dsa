@@ -1,0 +1,30 @@
+def min_separation_buildings():
+    # Read M and N
+    M, N = map(int, input("Enter M and N: ").split())
+    print(f"Enter {M} rows with {N} integers (0 or 1) each:")
+    
+    # Read the grid
+    grid = [list(map(int, input().split())) for _ in range(M)]
+    
+    output = []
+
+    # For each cell, check adjacent cells (up, down, left, right)
+    for i in range(M):
+        row = []
+        for j in range(N):
+            count = 0
+            for dx, dy in [(-1,0), (1,0), (0,-1), (0,1)]:
+                ni, nj = i + dx, j + dy
+                if 0 <= ni < M and 0 <= nj < N:
+                    if grid[i][j] != grid[ni][nj]:
+                        count += 1
+            row.append(str(count))
+        output.append(" ".join(row))
+    
+    # Print the final result
+    print("\nSeparation Counts:")
+    for row in output:
+        print(row)
+
+if __name__ == "__main__":
+    min_separation_buildings()
